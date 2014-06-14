@@ -17,8 +17,14 @@ def sendSMS(message):
                         data=payload)
     print r.text
 
+def jsonify(content):
+    response = serializers.serialize('json', content);
+    return HttpResponse(response, mimetype='application/json')
 
-def getLatestSMS():
+def getLatestSMS(request):
+    return jsonify(getTwilioSMSData())
+
+def getTwilioSMSData():
     r = requests.get('https://api.twilio.com/2010-04-01/Accounts/AC2538516e85acddb63169a9c56019a68a/Messages.json', auth=('AC2538516e85acddb63169a9c56019a68a', '170945ab2aed0d2ec992a22e9fa41ca4'))
     all_messages = []
     for item in r.json()['messages']:
@@ -29,11 +35,10 @@ def getLatestSMS():
         date_created = item['date_created'],
         sid = item['sid']
         ))
-    if all_messages[0].sid != "":
-        last_SMS_id = all_messages[0].sid
-        farmer = matchPhoneToFarmer(all_messages[0].phone[1:])
-        return farmer
-    return "BAD"
+    last_SMS_id = all_messages[0].sid
+    farmer = matchPhoneToFarmer(all_messages[0].phone[1:])
+    return farmer, all_messages[0]
+
 
 def matchPhoneToFarmer(phone):
     print "PHONE: ", phone
@@ -80,7 +85,7 @@ def returnFarmerDataJSON(request):
     return HttpResponse(response, mimetype='application/json')
 
 def dashboard(request):
-    sendSMS("yo what's up")
+    # sendSMS("yo what's up")
     context = {}
     return render(request, 'dashboard/dashboard.html', context)
 
