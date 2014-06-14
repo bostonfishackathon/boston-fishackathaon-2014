@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from dashboard.views import dashboard
-from dashboard.views import returnSampleFarmerData
+from dashboard.views import returnFarmerDataJSON
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -8,7 +8,7 @@ from dashboard.views import returnSampleFarmerData
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', dashboard),
-    url(r'^returnSampleFarmerData/', returnSampleFarmerData),	    
+    url(r'^returnSampleFarmerData/', returnFarmerDataJSON),	    
 # url(r'^surveytool/', include('surveytool.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
