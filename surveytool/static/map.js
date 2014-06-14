@@ -6,19 +6,32 @@ var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)
 
 var markers = []
 
-$.ajax{
+$.ajax({
 	type: "GET",
-	url: "",
-	success: populateData(data)
-}
+	url: "/returnFarmerDataJSON",
+	success: function(data) {
+		populateData(data)
+	}
+});
 
 function populateData(data){
+
+	var i = 0;
+	$.each(data, function(index){
+		var lat = parseFloat(this.fields.latitude.replace(/[^0-9.]+/g, ''));
+		var lng = parseFloat(this.fields.longitude.replace(/[^0-9.]+/g, ''));
+		markers[i] = new google.maps.Marker({position: new google.maps.LatLng(lat,lng)});
+		i++;
+	})
+
+/**
 	for(var i = 0; i < data.length; i++){
-		markers[i] = new google.maps.Marker(
-											{
-												position : new google.maps.LatLng(data[i].latitude, lon: data[i].longitude)
-											});
+		var json = $.parseJSON(data.all_farmers[i]);
+		markers[i] = new google.maps.Marker({position : new google.maps.LatLng(json.latitude, json.longitude)});
 	}
+**/
+
+	var mc = new MarkerClusterer(map, markers);
 }
 
-var mc = new MarkerClusterer(map, markers);
+

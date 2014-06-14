@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from dashboard.models import Farmer
 import random, json, requests
+from django.core import serializers
+
 from collections import namedtuple
 
 def sendSMS(message):
@@ -71,10 +73,10 @@ def generateSampleData():
                                      is_diseased=is_diseased))
 
 def returnFarmerDataJSON(request):
-    data = {'all_farmers':[]}
+    data = []
     for item in sample_farmers:
-        data['all_farmers'].append(str(item))
-    response = json.dumps(data)
+        data.append(str(item))
+    response = serializers.serialize('json', sample_farmers);
     return HttpResponse(response, mimetype='application/json')
 
 def dashboard(request):

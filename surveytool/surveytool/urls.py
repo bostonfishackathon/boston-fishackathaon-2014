@@ -8,7 +8,7 @@ from dashboard.views import returnFarmerDataJSON
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', dashboard),
-    url(r'^returnSampleFarmerData/', returnFarmerDataJSON),	    
+    url(r'^returnFarmerDataJSON/', returnFarmerDataJSON),	    
 # url(r'^surveytool/', include('surveytool.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
