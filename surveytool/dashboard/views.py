@@ -3,21 +3,23 @@ from django.shortcuts import render
 from dashboard.models import Farmer
 import random, json
 
+
+
 def generateSampleData():
     sample_names = ("Bob", "Dan", "Chloe", "Lyra", "Dev", "Eric")
     sample_land_area = (100, 140, 120, 30, 10, 1500)
-    sample_lat =         (20.762765 + random.random()/1000,
-        20.762765 + random.random()/1000,
-        20.762765 + random.random()/1000,
-        20.762765 + random.random()/1000,
-        20.762765 + random.random()/1000,
-        20.762765 + random.random()/1000)
-    sample_long =     (72.978160 + random.random()/1000,
-    72.978160 + random.random()/1000,
-    72.978160 + random.random()/1000,
-    72.978160 + random.random()/1000,
-    72.978160 + random.random()/1000,
-    72.978160)
+    sample_lat = (20.762765 + random.random()/1000,
+                    20.762765 + random.random()/1000,
+                    20.762765 + random.random()/1000,
+                    20.762765 + random.random()/1000,
+                    20.762765 + random.random()/1000,
+                    20.762765 + random.random()/1000)
+    sample_long = (72.978160 + random.random()/1000,
+                    72.978160 + random.random()/1000,
+                    72.978160 + random.random()/1000,
+                    72.978160 + random.random()/1000,
+                    72.978160 + random.random()/1000,
+                    72.978160)
     sample_diseased = (True, False, False, False, True, True)
     sample_farmers = []
 
