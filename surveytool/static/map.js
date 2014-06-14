@@ -8,7 +8,7 @@ var markers = []
 
 $.ajax{
 	type: "GET",
-	url: "",
+	url: "returnFarmerDataJSON/",
 	success: populateData(data)
 }
 
@@ -16,7 +16,7 @@ function populateData(data){
 	for(var i = 0; i < data.length; i++){
 		markers[i] = new google.maps.Marker(
 											{
-												position : new google.maps.LatLng(data[i].latitude, lon: data[i].longitude)
+												position : new google.maps.LatLng(data[i].latitude, data[i].longitude)
 											});
 	}
 }
