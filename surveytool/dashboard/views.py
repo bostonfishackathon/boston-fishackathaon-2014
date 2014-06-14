@@ -6,8 +6,25 @@ from django.core import serializers
 
 from collections import namedtuple
 
+def sendSMS(message):
+    if message:
+        assert isinstance(message, (str, unicode))
+        payload = {"From":"18126524546", "To":"+18126524546", "Body":message}
+    else:
+        payload = {"From":"18126524546", "To":"+18126524546", "Body":"we curlin"}
+    r = requests.post("https://api.twilio.com/2010-04-01/Accounts/AC2538516e85acddb63169a9c56019a68a/Messages", 
+                        auth=('AC2538516e85acddb63169a9c56019a68a','170945ab2aed0d2ec992a22e9fa41ca4'), 
+                        data=payload)
+    print r.text
 
-def getLatestSMS():
+def jsonify(content):
+    response = serializers.serialize('json', content);
+    return HttpResponse(response, mimetype='application/json')
+
+def getLatestSMS(request):
+    return jsonify(getTwilioSMSData())
+
+def getTwilioSMSData():
     r = requests.get('https://api.twilio.com/2010-04-01/Accounts/AC2538516e85acddb63169a9c56019a68a/Messages.json', auth=('AC2538516e85acddb63169a9c56019a68a', '170945ab2aed0d2ec992a22e9fa41ca4'))
     all_messages = []
     for item in r.json()['messages']:
@@ -18,11 +35,10 @@ def getLatestSMS():
         date_created = item['date_created'],
         sid = item['sid']
         ))
-    if all_messages[0].sid != "":
-        last_SMS_id = all_messages[0].sid
-        farmer = matchPhoneToFarmer(all_messages[0].phone[1:])
-        return farmer
-    return "BAD"
+    last_SMS_id = all_messages[0].sid
+    farmer = matchPhoneToFarmer(all_messages[0].phone[1:])
+    return farmer, all_messages[0]
+
 
 def matchPhoneToFarmer(phone):
     print "PHONE: ", phone
@@ -36,18 +52,18 @@ def generateSampleData():
     sample_names = ("Bob", "Dan", "Chloe", "Lyra", "Dev", "Eric")
     sample_land_area = (100, 140, 120, 30, 10, 1500)
     sample_phone = ("17792329691","17792329696","17792329691","17792329691","17792329691","17792329691")
-    sample_lat = (20.762765 + random.random()/1000,
-                    20.762765 + random.random()/1000,
-                    20.762765 + random.random()/1000,
-                    20.762765 + random.random()/1000,
-                    20.762765 + random.random()/1000,
-                    20.762765 + random.random()/1000)
-    sample_long = (72.978160 + random.random()/1000,
-                    72.978160 + random.random()/1000,
-                    72.978160 + random.random()/1000,
-                    72.978160 + random.random()/1000,
-                    72.978160 + random.random()/1000,
-                    72.978160)
+    sample_lat = (11.1 + random.random()/15,
+                    11.1 + random.random()/15,
+                    11.1 + random.random()/15,
+                    11.1 + random.random()/15,
+                    11.1 + random.random()/15,
+                    11.1 + random.random()/15)
+    sample_long = (79.646 + random.random()/15,
+                    79.646 + random.random()/15,
+                    79.646 + random.random()/15,
+                    79.646 + random.random()/15,
+                    79.646 + random.random()/15,
+                    79.646)
     sample_diseased = (True, False, False, False, True, True)
 
     for i in range(6):
@@ -69,6 +85,7 @@ def returnFarmerDataJSON(request):
     return HttpResponse(response, mimetype='application/json')
 
 def dashboard(request):
+    # sendSMS("yo what's up")
     context = {}
     return render(request, 'dashboard/dashboard.html', context)
 
