@@ -6,6 +6,7 @@ class Farmer(models.Model):
     latitude = models.FloatField(default=0.0)
     longitude = models.FloatField(default=0.0)
     is_diseased = models.BooleanField(default=False)
+    phone = models.CharField(max_length=11)
 
     def __str__(self):
     	return str({'name':self.name,
