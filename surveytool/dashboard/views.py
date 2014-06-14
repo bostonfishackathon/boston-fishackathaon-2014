@@ -22,9 +22,9 @@ def jsonify(content):
     return HttpResponse(response, mimetype='application/json')
 
 def getLatestSMS(request):
-    return jsonify(getTwilioSMSData())
+    return jsonify(str(getTwilioSMSData()))
 
-def getTwilioSMSData():
+def getTwilioSMSData(request):
     r = requests.get('https://api.twilio.com/2010-04-01/Accounts/AC2538516e85acddb63169a9c56019a68a/Messages.json', auth=('AC2538516e85acddb63169a9c56019a68a', '170945ab2aed0d2ec992a22e9fa41ca4'))
     all_messages = []
     for item in r.json()['messages']:
@@ -37,7 +37,7 @@ def getTwilioSMSData():
         ))
     last_SMS_id = all_messages[0].sid
     farmer = matchPhoneToFarmer(all_messages[0].phone[1:])
-    return farmer, all_messages[0]
+    return str({'farmer':farmer, 'text':all_messages[0]})
 
 
 def matchPhoneToFarmer(phone):
@@ -86,6 +86,7 @@ def returnFarmerDataJSON(request):
 
 def dashboard(request):
     # sendSMS("yo what's up")
+    print getTwilioSMSData(request)
     context = {}
     return render(request, 'dashboard/dashboard.html', context)
 
