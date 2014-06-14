@@ -3,7 +3,7 @@
 <head>
 	<link rel="stylesheet" src="">
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1g_k79W7OhHHn4XreVU1u83R-4_i-rmQ"></script>
-	<script type="text/javascript" src="/static/lib/markercluster-compiled.js"></script>
+	<script type="text/javascript" src="/static/lib/markerclusterer-compiled.js"></script>
 </head>
 <style type="text/css">
 	
@@ -35,6 +35,18 @@
 	box-shadow: 0px 0px 5px #ccc;
 	}
 
+	#bottom-container-left {
+		display: inline-block;
+        	width: 50%;
+		float: left;
+	}	
+
+	#bottom-container-right {
+		display: inline-block;
+	        width: 50%;
+	        float: left;
+	}
+
 	#news {
 	display: inline-block;
 	width: 50%;
@@ -60,11 +72,12 @@
 			</div>
 			<script type="text/javascript" src="/static/map.js"></script>
 		</div>
-		<div id="bottom-container">
+		<div id="bottom-container-left">
 			<div id = "news">	
 				<p>left side</p>
 			</div>
-			
+		</div>
+		<div id="bottom-container-right">
 			<div id = "buttons">
 				<button type="button">Click Me!</button>
 				<button type="button">Click Me!</button>
