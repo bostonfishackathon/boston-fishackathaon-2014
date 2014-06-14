@@ -23,3 +23,5 @@ class RealFarmer(models.Model):
     reg_number = models.CharField(max_length=50)
     farm_location = models.CharField(max_length=250)
 
+
+
