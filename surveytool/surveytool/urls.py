@@ -8,7 +8,8 @@ from dashboard.views import dashboard
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', dashboard),
-    # url(r'^surveytool/', include('surveytool.foo.urls')),
+    
+# url(r'^surveytool/', include('surveytool.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
