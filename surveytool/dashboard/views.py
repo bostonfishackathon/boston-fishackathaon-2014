@@ -66,11 +66,8 @@ def returnFarmerDataJSON(request):
     response = json.dumps(data)
     return HttpResponse(response, mimetype='application/json')
 
-
 def dashboard(request):
-
-    print getLatestSMS()
-    context = ""
+    context = {}
     return render(request, 'dashboard/dashboard.html', context)
 
 sample_farmers = []

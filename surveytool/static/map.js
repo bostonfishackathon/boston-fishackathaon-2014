@@ -4,15 +4,21 @@ var mapOptions = {
 };
 var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-/*
-var data = loadMarkers();
+var markers = []
 
-var markers = [];
-
-for(var i = 0; i < data.length; i++){
-	markers[i] = new google.maps.Marker(
-										{
-											position : data[i].LatLng
-										});
+$.ajax{
+	type: "GET",
+	url: "",
+	success: populateData(data)
 }
-*/
+
+function populateData(data){
+	for(var i = 0; i < data.length; i++){
+		markers[i] = new google.maps.Marker(
+											{
+												position : new google.maps.LatLng(data[i].latitude, lon: data[i].longitude)
+											});
+	}
+}
+
+var mc = new MarkerClusterer(map, markers);
