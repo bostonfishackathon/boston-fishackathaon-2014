@@ -40,6 +40,7 @@
 		display: inline-block;
         	width: 50%;
 		float: left;
+		margin-bottom: 30px;
 	}	
 
 	#bottom-container-right {
@@ -48,10 +49,16 @@
 	        float: left;
 	}
 
-	.news-label {
+	#news {
 	border: 1px solid #ccc;
 	box-shadow: 0px 0px 5px #ccc;
 	margin: 0px 30px;
+	}
+
+	.news-label {
+	color: white;
+	background: #333;
+	padding: 5px;
 	}
 
 	#buttons {
@@ -74,13 +81,16 @@
 			<script type="text/javascript" src="/static/map.js"></script>
 		</div>
 		<div id="bottom-container-left">
-			<div class="news-label">	
-				<p>left side</p>
+			<div id="news">
+				<div class="news-label">News</div>	
+				<ul>
+					<li> Disease is spreading! </li>
+				</ul>	
 			</div>
 		</div>
 		<div id="bottom-container-right">
 			<div id = "buttons">
-				<button type="button">Click Me!</button>
+
 				<button type="button">Click Me!</button>
 			</div>
 		</div>
