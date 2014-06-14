@@ -83,7 +83,7 @@ p {
 .master-queue{
 	border-style: solid;
 	display: inline-block;
-	width: 25%;
+	width: 35%;
 }
 
 .master-queue label{
@@ -94,6 +94,38 @@ p {
 .master-queue input{
 	display: inline-block;
 	width: 65%;
-	
 }
 
+
+.custom-question{
+	border-style: solid;
+	display: inline-block;
+	width: 65%;
+}
+
+.custom-question label{
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.frequency{
+	border-style: solid;
+	display: inline-block;
+	width: 20%;
+}
+
+.frequency label{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.distribution{
+	border-style: solid;
+	display: inline-block;
+	width: 15%;
+}
+
+.distribution label{
+	margin-left: auto;
+	margin-right: auto;
+}
