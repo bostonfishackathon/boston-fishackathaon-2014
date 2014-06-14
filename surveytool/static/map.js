@@ -1,10 +1,11 @@
 var mapOptions = {
-	center: new google.maps.LatLng(-34.397, 150.644),
-	zoom: 8
+	center: new google.maps.LatLng(11.1, 72.646),
+	zoom: 3
 };
 var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
 var markers = [];
+var infowindows = [];
 var mc;
 
 $.ajax({
@@ -25,14 +26,14 @@ function populateData(data){
 
 		var contentString = "Disease Presence: " + this.fields.is_diseased;
 
-		var infowindow = new google.maps.InfoWindow({
+		var infowindows[i] = new google.maps.InfoWindow({
 		    content: contentString
 		});
 
-		google.maps.event.addListener(marker, 'click', function() {
-		    infowindow.open(map,markers[i]);
+		google.maps.event.addListener(markers[i], 'click', function() {
+		    infowindows[i].open(map,markers[i]);
 		  });
-				i++;
+		i++;
 	})
 
 	mc = new MarkerClusterer(map, markers);
