@@ -2,6 +2,8 @@
 <html>
 <head>
 	<link rel="stylesheet" src="">
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1g_k79W7OhHHn4XreVU1u83R-4_i-rmQ"></script>
+    <script type="text/javascript" src="lib/markercluster-compiled.js"></script>
 </head>
 <style type="text/css">
 	
@@ -51,9 +53,30 @@
 		</div>
 
 		<div id="top-container">
-			<div id = "map">	
+			<div id = "map-canvas">	
 
 			</div>
+			<script type="text/javascript">
+				var mapOptions = {
+					center: new google.maps.LatLng(-34.397, 150.644),
+					zoom: 8
+				};
+				var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+				/*
+
+				var data = {{ python_data_object }}
+
+				var markers = [];
+
+				for(var i = 0; i < data.length; i++){
+					markers[i] = new google.maps.Marker(
+														{
+															position : data[i].LatLng
+														});
+				}
+				*/
+			</script>
 		</div>
 		<div id="bottom-container">
 			<div id = "news">	
