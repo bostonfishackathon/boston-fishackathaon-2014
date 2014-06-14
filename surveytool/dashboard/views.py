@@ -34,7 +34,7 @@ def generateSampleData():
                                      is_diseased=is_diseased))
     return sample_farmers
 
-def returnSampleFarmerData():
+def returnSampleFarmerData(request):
     farmers = generateSampleData()
     data = {'all_farmers':[]}
     for item in farmers:
@@ -42,14 +42,11 @@ def returnSampleFarmerData():
     response = json.dumps(data)
     # print json.loads(response)
     # print json.loads(response)['all_farmers']
-    print json.loads(response)['all_farmers'][0]
-    return json.dumps(data)
-
+    #print json.loads(response)['all_farmers'][0]
+    #return json.dumps(data)
+    return HttpResponse(response, mimetype='application/json') 
 
 def dashboard(request):
-
-    returnSampleFarmerData()
-
-    context = ""
+    context = {}
     return render(request, 'dashboard/dashboard.html', context)
 
